@@ -14,8 +14,8 @@ from re import IGNORECASE, sub  # noqa: F401
 import pytest
 import requests  # noqa: F401
 
-import my_module  # noqa: F401
-from my_module.utils import add_two_numbers
+import akai_mkpmini_mkii_ctrl  # noqa: F401
+from akai_mkpmini_mkii_ctrl.utils import add_two_numbers
 
 
 class TestUtils:  # noqa: D101
