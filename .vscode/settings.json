@@ -1,7 +1,7 @@
 {
     "python.pythonPath": ".venv/bin/python",
     "python.analysis.extraPaths": [
-        "akai_mkpmini_mkii_ctrl",
+        "akai_mpkmini_mkii_ctrl",
         "tests",
         ".venv/bin/python"
     ],

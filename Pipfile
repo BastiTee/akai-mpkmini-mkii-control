@@ -20,7 +20,8 @@ rope = "*" # Refactoring library
 twine = "*" # Interoperability with pypi.org
 mypy = "*" # Optional static type checker
 typing_extensions = "*" # Typing extensions for mypy
-akai_mkpmini_mkii_ctrl = {path = ".", editable = true}
+akai_mpkmini_mkii_ctrl = {path = ".", editable = true}
 
 [packages]
-requests = "*"
+python-rtmidi = "*"
+click = "*"

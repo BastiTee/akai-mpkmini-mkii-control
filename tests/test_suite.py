@@ -14,8 +14,7 @@ from re import IGNORECASE, sub  # noqa: F401
 import pytest
 import requests  # noqa: F401
 
-import akai_mkpmini_mkii_ctrl  # noqa: F401
-from akai_mkpmini_mkii_ctrl.utils import add_two_numbers
+import akai_mpkmini_mkii_ctrl  # noqa: F401
 
 
 class TestUtils:  # noqa: D101
@@ -29,9 +28,4 @@ class TestUtils:  # noqa: D101
             number_right: int
     ) -> None:
         """Basic input validation."""
-        with pytest.raises(ValueError):
-            add_two_numbers(number_left, number_right)
-
-    def test_add_two_numbers_regular_input(self) -> None:
-        """Basic asserting test."""
-        assert add_two_numbers(2, 3) == 5
+        assert 1 + 1 == 2

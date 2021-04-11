@@ -5,7 +5,6 @@ A module's __name__ is set equal to '__main__' when read from standard input,
 a script, or from an interactive prompt.
 """
 
-from akai_mkpmini_mkii_ctrl.utils import add_two_numbers
+from akai_mpkmini_mkii_ctrl import first_steps
 
-print('Executed from command line...')
-print(f'2 + 2 equals {add_two_numbers(2, 2)}')
+first_steps.main()
