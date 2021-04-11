@@ -157,5 +157,7 @@ def note_to_decimal(note: str) -> int:  # noqa: D103
 
 def decimal_to_note(decimal: int) -> str:  # noqa: D103
     assert decimal in MAP.values()
-    # TODO
+    for key in MAP.keys():
+        if MAP[key] == decimal:
+            return key
     return ''

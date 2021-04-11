@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Parse and write MPKmini MKII data."""
+"""Construct for MPKmini MK2 Patch data."""
 
 from construct import (Array, Byte, Computed, Const, Default, Embedded, Enum,
                        ExprAdapter, Int16ub, Sequence, Struct, obj_)
 
-# --------------------------------------------------
-# Constants defining MPK features
+# -----------------------------------------------------------------------------
+# CONSTANTS DEFINING MPK FEATURES
+# -----------------------------------------------------------------------------
 
 _PADS = 8
 _PBANKS = 2
@@ -16,9 +17,10 @@ _DIALS = 8
 _DBANKS = 1
 _DTOTAL = _DIALS * _DBANKS
 
-# --------------------------------------------------
-# Define file format using Construct (v2.9)
+# -----------------------------------------------------------------------------
+# DEFINE FILE FORMAT USING CONSTRUCT (V2.9)
 # https://github.com/construct/construct
+# -----------------------------------------------------------------------------
 
 General = Struct(
     'preset' / Byte,
@@ -206,26 +208,3 @@ Mpk_mk2 = Sequence(
     Transpose,
     Footer,
 )
-
-# --------------------------------------------------
-
-
-def main(  # noqa: D103
-    in_file: str,
-    out_file: str
-) -> None:
-    with open(in_file, 'rb') as in_file_byte:
-        data = in_file_byte.read(2000)
-
-    config = Mpk_mk2.parse(data)
-    print(config)
-
-    with open(out_file, 'wb') as out_file_byte:
-        out_file_byte.write(Mpk_mk2.build(config))
-
-
-if __name__ == '__main__':
-    main(
-        './resources/patches/DEFAULT-PROGRAM-01.mk2',
-        './resources/patches/DEFAULT-PROGRAM-01-OUT.mk2',
-    )

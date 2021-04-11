@@ -28,13 +28,44 @@ def set_patch_to_defaults(  # noqa: D103
     midi_out: MidiOut
 ) -> None:
     config = get_config_from_device(1, midi_in, midi_out)
-    config[0].enable = 'OFF'  # Arpeggiator off
-    config[0].octave = 2  # Center octave
 
+    # MIDI channels
+    config[0].pchannel = 1  # Pads on channel 2
+    config[0].dchannel = 1  # Dials and keys on channel 2
+
+    # Key centers
+    config[0].octave = 4  # Octave center (4 = middle)
+    config[3].transpose = 'TRANS_0'  # Transpose value (note-wise shift)
+
+    # Arpeggiator
+    config[0].enable = 'OFF'
+    config[0].mode = 'EXCLUSIVE'
+    config[0].division = 'DIV_1_8'
+    config[0].clock = 'INTERNAL'
+    config[0].latch = 'DISABLE'
+    config[0].swing = 'SWING_50'
+    config[0].taps = 3
+    config[0].tempo = 140
+    config[0].octaves = 'OCT_1'
+
+    # Joystick
+    config[0].axis_x = 'CC2'
+    config[0].x_up = 1
+    config[0].x_down = 1
+    config[0].axis_y = 'PBEND'
+    config[0].y_up = 0
+    config[0].y_down = 1
+
+    current_cc = 12  # Start with CC 4 upwards
+    current_prog_change = 20  # Start with PROG 20 upwards
     for bank in range(0, 2):
         for pad in range(0, 8):
-            # CC-MODE Momentary or Trigger
+            config[1][bank][pad].midicc = current_cc
+            config[1][bank][pad].prog = current_prog_change
+            # CC-MODE Momentary (0) or Trigger (1)
             config[1][bank][pad].trigger = 0
+            current_cc += 1
+            current_prog_change += 1
 
     # BANK A
     config[1][0][4].note = n2d('c1')
@@ -57,6 +88,14 @@ def set_patch_to_defaults(  # noqa: D103
     config[1][1][1].note = n2d('e1')
     config[1][1][2].note = n2d('g1')
     config[1][1][3].note = n2d('a1')
+
+    # MIDI CC dials
+    current_cc = 4  # Start with CC 4 upwards
+    for dial in config[2][0]:
+        dial.min = 0
+        dial.max = 127
+        dial.midicc = current_cc
+        current_cc += 1
 
     send_config_to_device(config, 0, midi_out)
 
