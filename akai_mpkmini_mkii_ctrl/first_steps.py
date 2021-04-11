@@ -8,6 +8,7 @@ from typing import Any, Tuple
 
 import rtmidi
 from rtmidi import midiutil
+from akai_mpkmini_mkii_ctrl.mpk_mini import Mpk_mk2
 
 MPKMINI_DEVICE = 'MPK Mini Mk II'
 
@@ -30,9 +31,11 @@ def main() -> None:  # noqa: D103
     assert midi_out.get_port_name(0) == MPKMINI_DEVICE
 
     # Send sysex to fetch patch 1
-    data = bytearray.fromhex('F0 47 00 26 66 00 01 01 F7')
+    sysex = 'F0 47 00 26 66 00 01 03 F7'
+    data = bytearray.fromhex(sysex)
     assert data[0] == 0xF0 and data[-1] == 0xF7
     midi_out.send_message(data)
+    print(f'- SENT {len(data)} BYTES. SYSEX = "{sysex}"...')
 
     try:
         # Main application loop
@@ -60,9 +63,9 @@ class MidiInputHandler(object):  # noqa: D101
     ) -> None:
         msg_dec, deltatime = event
         msg_hex = [hex(m) for m in msg_dec]
-        print('-- RECEIVED')
+        print(f'- RECEIVED {len(msg_dec)} BYTES')
         print(f'DEC = {" ".join([str(m) for m in msg_dec])}')
         print(f'HEX = {" ".join([str(m)[2:].zfill(2) for m in msg_hex])}')
 
-        with open('output/hex_file.mk2', 'wb') as hex_file:
-            hex_file.write(bytearray(msg_dec))
+        config = Mpk_mk2.parse(bytearray(msg_dec))
+        print(config)
