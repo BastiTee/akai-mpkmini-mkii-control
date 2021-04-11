@@ -2,10 +2,9 @@
 # -*- coding: utf-8 -*-
 """First experiment for a single patch roundtrip."""
 
-from os import path
 from pathlib import Path
 from time import sleep
-from typing import Any, List, Tuple
+from typing import Any, Tuple
 
 import rtmidi
 from rtmidi import midiutil
