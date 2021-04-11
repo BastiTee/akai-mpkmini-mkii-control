@@ -187,7 +187,7 @@ Header_Mk2 = Struct(
     Const(b'\xf0'),                 # SysEx Begin
     Const(b'\x47\x00'),             # Mfg ID = Akai
     Const(b'\x26'),                 # Dev ID = MPK Mk2
-    Const(b'\x67'),                 # CMD = Dump/Load Preset (USED TO BE 64!!)
+    Const(b'\x64'),                 # CMD = Dump (67) / Load (64) Preset
     Const(b'\x00\x6d'),             # Len = 109bytes (7bit stuffed)
 
     Embedded(General),              # Note: different order to Mk1

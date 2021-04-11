@@ -1,0 +1,142 @@
+ListContainer:
+    Container:
+        mk2 = True
+        preset = 0
+        pchannel = 2
+        dchannel = 1
+        octave = 4
+        enable = u'OFF' (total 3)
+        mode = (enum) UP 0
+        division = (enum) DIV_1_16 4
+        clock = (enum) INTERNAL 0
+        latch = (enum) DISABLE 0
+        swing = (enum) SWING_50 0
+        taps = 3
+        tempo = 120
+        octaves = (enum) OCT_1 0
+        axis_x = (enum) PBEND 0
+        x_up = 0
+        x_down = 1
+        axis_y = (enum) CC2 2
+        y_up = 1
+        y_down = 1
+    ListContainer:
+        ListContainer:
+            Container:
+                note = 40
+                midicc = 0
+                prog = 20
+                trigger = (enum) MOMENTARY 0
+            Container:
+                note = 41
+                midicc = 1
+                prog = 21
+                trigger = (enum) MOMENTARY 0
+            Container:
+                note = 42
+                midicc = 2
+                prog = 22
+                trigger = (enum) MOMENTARY 0
+            Container:
+                note = 43
+                midicc = 3
+                prog = 23
+                trigger = (enum) MOMENTARY 0
+            Container:
+                note = 37
+                midicc = 4
+                prog = 24
+                trigger = (enum) MOMENTARY 0
+            Container:
+                note = 36
+                midicc = 5
+                prog = 25
+                trigger = (enum) MOMENTARY 0
+            Container:
+                note = 38
+                midicc = 6
+                prog = 26
+                trigger = (enum) MOMENTARY 0
+            Container:
+                note = 39
+                midicc = 7
+                prog = 27
+                trigger = (enum) MOMENTARY 0
+        ListContainer:
+            Container:
+                note = 32
+                midicc = 8
+                prog = 28
+                trigger = (enum) TOGGLE 1
+            Container:
+                note = 33
+                midicc = 9
+                prog = 29
+                trigger = (enum) TOGGLE 1
+            Container:
+                note = 34
+                midicc = 10
+                prog = 30
+                trigger = (enum) TOGGLE 1
+            Container:
+                note = 35
+                midicc = 11
+                prog = 31
+                trigger = (enum) TOGGLE 1
+            Container:
+                note = 36
+                midicc = 12
+                prog = 32
+                trigger = (enum) TOGGLE 1
+            Container:
+                note = 37
+                midicc = 13
+                prog = 33
+                trigger = (enum) TOGGLE 1
+            Container:
+                note = 38
+                midicc = 14
+                prog = 34
+                trigger = (enum) TOGGLE 1
+            Container:
+                note = 39
+                midicc = 15
+                prog = 35
+                trigger = (enum) TOGGLE 1
+    ListContainer:
+        ListContainer:
+            Container:
+                midicc = 3
+                min = 0
+                max = 127
+            Container:
+                midicc = 4
+                min = 0
+                max = 127
+            Container:
+                midicc = 5
+                min = 0
+                max = 127
+            Container:
+                midicc = 6
+                min = 0
+                max = 127
+            Container:
+                midicc = 7
+                min = 0
+                max = 127
+            Container:
+                midicc = 8
+                min = 0
+                max = 127
+            Container:
+                midicc = 9
+                min = 0
+                max = 127
+            Container:
+                midicc = 10
+                min = 0
+                max = 127
+    Container:
+        transpose = (enum) TRANS_0 12
+    Container:
