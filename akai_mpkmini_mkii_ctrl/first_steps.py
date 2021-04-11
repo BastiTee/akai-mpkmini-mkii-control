@@ -73,7 +73,7 @@ def set_patch_to_defaults(  # noqa: D103
     config[1][0][6].note = n2d('f#1')
     config[1][0][7].note = n2d('a#1')
 
-    config[1][0][0].note = n2d('d1')
+    config[1][0][0].note = n2d('e2')
     config[1][0][1].note = n2d('e1')
     config[1][0][2].note = n2d('g1')
     config[1][0][3].note = n2d('a1')
