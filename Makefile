@@ -80,11 +80,9 @@ build: test mypy isort lint
 	@echo Run setup.py-based build process to package application
 	pipenv run python setup.py bdist_wheel
 
-publish: all
-	@echo Release to pypi.org and create git tag
-	pipenv run twine upload dist/*
-	git tag -a $(VERSION) -m "Version $(VERSION)"
-	git push --tags
+install: all
+	@echo Install application
+	pip install --user dist/*.whl
 
 run:
 	@echo Execute akai_mpkmini_mkii_ctrl directly

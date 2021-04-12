@@ -148,7 +148,8 @@ MAP: Dict[str, int] = {
 
 
 def note_to_decimal(note: str) -> int:
-    assert note in MAP.keys()
+    if note not in MAP.keys():
+        raise ValueError(f'Note "{note}" unknown.')
     return MAP[note]
 
 

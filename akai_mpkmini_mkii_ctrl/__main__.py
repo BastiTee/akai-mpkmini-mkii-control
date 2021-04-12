@@ -2,9 +2,12 @@
 """Command-line controller for AKAI MPKmini MK2."""
 
 
+from json import load
+
 import click
 
 from akai_mpkmini_mkii_ctrl import controller as ctrl
+from akai_mpkmini_mkii_ctrl import json_converter
 
 
 @click.group(help=__doc__)
@@ -74,82 +77,27 @@ def pull_preset(
             output_file_handle.write(bytes(binary))
 
 
+@main.command(help='Converts a JSON-based preset to a binary preset')
+@click.option(
+    '--input-file', '-i', required=True, metavar='FILE',
+    help='Binary input file, i.e., a regular *.mk2 preset file'
+)
+@click.option(
+    '--output-file', '-o', required=True, metavar='FILE',
+    help='Binary output file, i.e., a regular *.mk2 preset file'
+)
+@click.pass_context
+def convert(
+    ctx: click.Context,
+    input_file: str,
+    output_file: str
+) -> None:
+    with open(input_file, 'r') as input_file_handle:
+        json_data = load(input_file_handle)
+        binary = json_converter.json_to_binary(json_data)
+        with open(output_file, 'wb') as output_file_handle:
+            output_file_handle.write(bytes(binary))
+
+
 if __name__ == '__main__':
     main()
-
-
-# def set_patch_to_defaults(
-#     midi_in: MidiIn,
-#     midi_out: MidiOut
-# ) -> None:
-#     config = get_config_from_device(1, midi_in, midi_out)
-
-#     # MIDI channels
-#     config[0].pchannel = 1  # Pads on channel 2
-#     config[0].dchannel = 1  # Dials and keys on channel 2
-
-#     # Key centers
-#     config[0].octave = 4  # Octave center (4 = middle)
-#     config[3].transpose = 'TRANS_0'  # Transpose value (note-wise shift)
-
-#     # Arpeggiator
-#     config[0].enable = 'OFF'
-#     config[0].mode = 'EXCLUSIVE'
-#     config[0].division = 'DIV_1_8'
-#     config[0].clock = 'INTERNAL'
-#     config[0].latch = 'DISABLE'
-#     config[0].swing = 'SWING_50'
-#     config[0].taps = 3
-#     config[0].tempo = 140
-#     config[0].octaves = 'OCT_1'
-
-#     # Joystick
-#     config[0].axis_x = 'CC2'
-#     config[0].x_up = 1
-#     config[0].x_down = 1
-#     config[0].axis_y = 'PBEND'
-#     config[0].y_up = 0
-#     config[0].y_down = 1
-
-#     current_cc = 12  # Start with CC 4 upwards
-#     current_prog_change = 20  # Start with PROG 20 upwards
-#     for bank in range(0, 2):
-#         for pad in range(0, 8):
-#             config[1][bank][pad].midicc = current_cc
-#             config[1][bank][pad].prog = current_prog_change
-#             # CC-MODE Momentary (0) or Trigger (1)
-#             config[1][bank][pad].trigger = 0
-#             current_cc += 1
-#             current_prog_change += 1
-
-#     # BANK A
-#     config[1][0][4].note = n2d('C1')
-#     config[1][0][5].note = n2d('C#1')
-#     config[1][0][6].note = n2d('F#1')
-#     config[1][0][7].note = n2d('A#1')
-
-#     config[1][0][0].note = n2d('E2')
-#     config[1][0][1].note = n2d('E1')
-#     config[1][0][2].note = n2d('G1')
-#     config[1][0][3].note = n2d('A1')
-
-#     # BANK B
-#     config[1][1][4].note = n2d('C1')
-#     config[1][1][5].note = n2d('C#1')
-#     config[1][1][6].note = n2d('F#1')
-#     config[1][1][7].note = n2d('A#1')
-
-#     config[1][1][0].note = n2d('D1')
-#     config[1][1][1].note = n2d('E1')
-#     config[1][1][2].note = n2d('G1')
-#     config[1][1][3].note = n2d('A1')
-
-#     # MIDI CC dials
-#     current_cc = 4  # Start with CC 4 upwards
-#     for dial in config[2][0]:
-#         dial.min = 0
-#         dial.max = 127
-#         dial.midicc = current_cc
-#         current_cc += 1
-
-#     send_config_to_device(config, 0, midi_out)
