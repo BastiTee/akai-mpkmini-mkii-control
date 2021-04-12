@@ -22,10 +22,10 @@ class TestUtils:  # noqa: D101
     @pytest.mark.parametrize('number_left, number_right', [
         (None, 1), (1, None), (None, None)
     ])
-    def test_add_two_numbers_no_input(
+    def test_dummy(
             self,
             number_left: int,
             number_right: int
     ) -> None:
-        """Basic input validation."""
-        assert 1 + 1 == 2
+        print(number_left, number_right)
+        assert True

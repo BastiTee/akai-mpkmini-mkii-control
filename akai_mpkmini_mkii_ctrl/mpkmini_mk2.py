@@ -201,7 +201,7 @@ Header_Mk2 = Struct(
     Embedded(Joy),
 )
 
-Mpk_mk2 = Sequence(
+MPK_MINI_MK2 = Sequence(
     Header_Mk2,
     Array(_PBANKS, Array(_PADS, Pad,)),
     Array(_DBANKS, Array(_DIALS, Dial,)),
