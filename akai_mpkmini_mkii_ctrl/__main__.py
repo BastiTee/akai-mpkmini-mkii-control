@@ -80,7 +80,7 @@ def pull_preset(
 @main.command(help='Converts a JSON-based preset to a binary preset')
 @click.option(
     '--input-file', '-i', required=True, metavar='FILE',
-    help='Binary input file, i.e., a regular *.mk2 preset file'
+    help='JSON input file'
 )
 @click.option(
     '--output-file', '-o', required=True, metavar='FILE',

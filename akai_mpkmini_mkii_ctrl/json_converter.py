@@ -21,13 +21,13 @@ def json_to_binary(json: dict) -> List[int]:
     preset[0].mk2 = True
     preset[0].preset = 0
     # Midi channel for pads
-    preset[0].pchannel = json_lookup(json, 'midi-channels.pads', 0)
+    preset[0].pchannel = __json_lookup(json, 'midi-channels.pads', 0)
     # Midi channel for dials and keys
-    preset[0].dchannel = json_lookup(json, 'midi-channels.keys', 0)
+    preset[0].dchannel = __json_lookup(json, 'midi-channels.keys', 0)
     # Octave-wise shift
-    preset[0].octave = json_lookup(json, 'transponse.octave', 'OCT_0')
+    preset[0].octave = __json_lookup(json, 'transponse.octave', 'OCT_0')
     # Note-wise shift
-    preset[3].transpose = json_lookup(json, 'transponse.note', 'TRANS_0')
+    preset[3].transpose = __json_lookup(json, 'transponse.note', 'TRANS_0')
     # Arpeggiator
     preset[0].enable = 'OFF'
     preset[0].mode = 'EXCLUSIVE'
@@ -93,12 +93,12 @@ def json_to_binary(json: dict) -> List[int]:
 
 
 def __extract_bank_notes(json: dict, path: str) -> List[str]:
-    return [note.strip() for note in json_lookup(
+    return [note.strip() for note in __json_lookup(
         json, path, 'C1 C#1 D1 D#1 E1 F1 F#1 G1'
     ).split(r' ')]
 
 
-def json_lookup(json: dict, path: str, default_value: Any) -> Any:
+def __json_lookup(json: dict, path: str, default_value: Any) -> Any:
     if not path:
         return default_value
     json = json if json else {}
