@@ -89,12 +89,3 @@ publish: all
 run:
 	@echo Execute akai_mpkmini_mkii_ctrl directly
 	pipenv run python -m akai_mpkmini_mkii_ctrl
-
-fetch-latest-boilerplate:
-	@echo Fetch latest python3-boilerplate version from github
-	git remote add py3template git@github.com:BastiTee/python3-boilerplate.git \
-	||true
-	git pull py3template master --allow-unrelated-histories ||true
-	@echo ----------------------------------------------------
-	@echo Resolve all merge conflicts and commit your changes!
-	@echo ----------------------------------------------------
