@@ -82,7 +82,7 @@ build: test mypy isort lint
 
 install: all
 	@echo Install application
-	pip install --user dist/*.whl
+	pip install --upgrade --user dist/*.whl
 
 run:
 	@echo Execute akai_mpkmini_mkii_ctrl directly
