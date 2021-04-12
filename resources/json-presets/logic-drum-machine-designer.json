@@ -1,0 +1,18 @@
+{
+    "midi-channels": {
+        "pads": 1,
+        "keys": 1
+    },
+    "transponse": {
+        "octave": "OCT_M2",
+        "note": "TRANS_0"
+    },
+    "pads": {
+        "bank-a": {
+            "notes": "C#2 D1 G1 A1 C1 C#1 F#1 A#1"
+        },
+        "bank-b": {
+            "notes": "D#2 D1 G1 A1 C1 C#1 F#1 G#1"
+        }
+    }
+}

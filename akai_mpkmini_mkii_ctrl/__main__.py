@@ -8,6 +8,7 @@ import click
 
 from akai_mpkmini_mkii_ctrl import controller as ctrl
 from akai_mpkmini_mkii_ctrl import json_converter
+from akai_mpkmini_mkii_ctrl.mpkmini_mk2 import MPK_MINI_MK2
 
 
 @click.group(help=__doc__)
@@ -59,6 +60,24 @@ def push_preset(
         ctrl.send_binary_to_device(
             input_file, ctx.obj['preset'], m_out
         )
+
+
+@main.command(help='Push a JSON preset from file to the device')
+@click.option(
+    '--input-file', '-i', required=True, metavar='FILE',
+    help='JSON input file'
+)
+@click.pass_context
+def push_json_preset(
+    ctx: click.Context,
+    input_file: str
+) -> None:
+    with open(input_file, 'r') as input_file_handle:
+        json_data = load(input_file_handle)
+        binary = json_converter.json_to_binary(json_data)
+        config = MPK_MINI_MK2.parse(binary)
+        with ctrl.midi_connection(ctx.obj['midi_port']) as (m_in, m_out):
+            ctrl.send_config_to_device(config, ctx.obj['preset'], m_out)
 
 
 @main.command(help='Pull a binary from the device and write to file')
