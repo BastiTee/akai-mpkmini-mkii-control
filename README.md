@@ -2,7 +2,9 @@
 
 [![CI](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml/badge.svg)](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml)
 
-Best effort project to overcome the fact that AKAI doesn't seem to be interested in fixing Segmentation faults in their [MPKmini Editor](https://www.akaipro.com/mpk-mini-mkii). For questions reach out to <http://twitter.com/basti_tee>
+Best effort project to overcome the fact that AKAI doesn't seem to be interested in fixing Segmentation faults in their [MPKmini Editor](https://www.akaipro.com/mpk-mini-mkii). For questions reach out to <http://twitter.com/basti_tee>.
+
+It is currently mostly fixing my own itches but it would be a pleasure to find like-minded people who would like to contribute :)
 
 ## Install
 
@@ -35,25 +37,35 @@ Commands:
 Print preset stored on program 1 in human readable format:
 
 ```shell
-python3 -m akai_mpkmini_mkii_ctrl --preset 1 print-preset
+python3 -m akai_mpkmini_mkii_ctrl \
+--preset 1 print-preset
 ```
 
 Download preset stored in RAM to a local file:
 
 ```shell
-python3 -m akai_mpkmini_mkii_ctrl --preset 0 pull-preset --output-file ram-preset.mk2
+python3 -m akai_mpkmini_mkii_ctrl \
+--preset 0 \
+pull-preset \
+--output-file ram-preset.mk2
 ```
 
 Upload preset from somewhere to program 2 (also works with factory presets):
 
 ```shell
-python3 -m akai_mpkmini_mkii_ctrl --preset 2 push-preset --input-file resources/factory-patches/preset1.mk2
+python3 -m akai_mpkmini_mkii_ctrl \
+--preset 2 \
+push-preset \
+--input-file resources/factory-patches/preset1.mk2
 ```
 
 Experimental: Create a preset using a [JSON-based definition](resources/json-presets/default.json) file:
 
 ```shell
-python3 -m akai_mpkmini_mkii_ctrl convert --input-file resources/json-presets/default.json --output-file resources/json-presets/default.mk2
+python3 -m akai_mpkmini_mkii_ctrl \
+convert \
+--input-file resources/json-presets/default.json \
+--output-file resources/json-presets/default.mk2
 ```
 
 ## Sources
