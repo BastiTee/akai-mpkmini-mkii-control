@@ -3,10 +3,11 @@
 r"""Convert JSON presets to Construct presets.
 
 TODO This does not yet convert all possible values from JSON ¯\_(ツ)_/¯
-But refer to resources/json-presets/default.json and this code to extend it.
+But refer to resources/json-presets/*.json and this code to extend it.
 """
 
 from os import path
+from re import sub
 from typing import Any, List
 
 from akai_mpkmini_mkii_ctrl.mpkmini_mk2 import MPK_MINI_MK2
@@ -17,34 +18,33 @@ TEMPLATE = path.join(path.dirname(path.abspath(__file__)), 'preset.mk2')
 
 def json_to_binary(json: dict) -> List[int]:
     preset = MPK_MINI_MK2.parse_file(TEMPLATE)
-    # Defaults
+    # Constants
     preset[0].mk2 = True
-    preset[0].preset = 0
-    # Midi channel for pads
-    preset[0].pchannel = __json_lookup(json, 'midi-channels.pads', 0)
-    # Midi channel for dials and keys
-    preset[0].dchannel = __json_lookup(json, 'midi-channels.keys', 0)
+    preset[0].preset = 0  # Will be changed depending on the --patch option
+    # Midi channel for pads and dials/keys
+    preset[0].pchannel = __read_json(json, 'midi-channels.pads', 0)
+    preset[0].dchannel = __read_json(json, 'midi-channels.keys', 0)
     # Octave-wise shift
-    preset[0].octave = __json_lookup(json, 'transponse.octave', 'OCT_0')
+    preset[0].octave = __read_json(json, 'transponse.octave', 'OCT_0')
     # Note-wise shift
-    preset[3].transpose = __json_lookup(json, 'transponse.note', 'TRANS_0')
+    preset[3].transpose = __read_json(json, 'transponse.note', 'TRANS_0')
     # Arpeggiator
-    preset[0].enable = 'OFF'
-    preset[0].mode = 'EXCLUSIVE'
-    preset[0].division = 'DIV_1_8'
-    preset[0].clock = 'INTERNAL'
-    preset[0].latch = 'DISABLE'
-    preset[0].swing = 'SWING_50'
-    preset[0].taps = 3
-    preset[0].tempo = 140
-    preset[0].octaves = 'OCT_1'
+    preset[0].enable = __read_json(json, 'arpeggiator.enable', 'OFF')
+    preset[0].mode = __read_json(json, 'arpeggiator.mode', 'EXCLUSIVE')
+    preset[0].division = __read_json(json, 'arpeggiator.division', 'DIV_1_8')
+    preset[0].clock = __read_json(json, 'arpeggiator.clock', 'INTERNAL')
+    preset[0].latch = __read_json(json, 'arpeggiator.latch', 'DISABLE')
+    preset[0].swing = __read_json(json, 'arpeggiator.swing', 'SWING_50')
+    preset[0].taps = __read_json(json, 'arpeggiator.taps', 3)
+    preset[0].tempo = __read_json(json, 'arpeggiator.tempo', 140)
+    preset[0].octaves = __read_json(json, 'arpeggiator.octaves', 'OCT_1')
     # Joystick
-    preset[0].axis_x = 'CC2'
-    preset[0].x_up = 1
-    preset[0].x_down = 1
-    preset[0].axis_y = 'PBEND'
-    preset[0].y_up = 0
-    preset[0].y_down = 1
+    preset[0].axis_x = __read_json(json, 'joystick.axis-x', 'CC2')
+    preset[0].x_up = __read_json(json, 'joystick.x-up', 1)
+    preset[0].x_down = __read_json(json, 'joystick.x-down', 1)
+    preset[0].axis_y = __read_json(json, 'joystick.axis-y', 'PBEND')
+    preset[0].y_up = __read_json(json, 'joystick.y-up', 0)
+    preset[0].y_down = __read_json(json, 'joystick.y-down', 1)
     # CC and Prog Change setup for pads
     current_cc = 12  # Start with CC 12 upwards
     current_prog_change = 20  # Start with PROG 20 upwards
@@ -57,48 +57,40 @@ def json_to_binary(json: dict) -> List[int]:
             current_cc += 1
             current_prog_change += 1
     # MIDI CC Dials
-    current_cc = 4  # Start with CC 4 upwards
-    for dial in preset[2][0]:
-        dial.min = 0
-        dial.max = 127
-        dial.midicc = current_cc
-        current_cc += 1
+    dials_cc_string = __read_json(json, 'dials.cc', '4 5 6 7 8 9 10 11')
+    dials_cc = [int(dial_cc.strip()) for dial_cc in dials_cc_string.split(' ')]
+    for i, dial in enumerate(preset[2][0]):
+        dial.min = __read_json(json, 'dials.min-value', 0)
+        dial.max = __read_json(json, 'dials.max-value', 0)
+        dial.midicc = dials_cc[i]
     # BANK A Notes
-    bank_a_notes = __extract_bank_notes(json, 'pads.bank-a.notes')
-    preset[1][0][0].note = n2d(bank_a_notes[0])
-    preset[1][0][1].note = n2d(bank_a_notes[1])
-    preset[1][0][2].note = n2d(bank_a_notes[2])
-    preset[1][0][3].note = n2d(bank_a_notes[3])
-    preset[1][0][4].note = n2d(bank_a_notes[4])
-    preset[1][0][5].note = n2d(bank_a_notes[5])
-    preset[1][0][6].note = n2d(bank_a_notes[6])
-    preset[1][0][7].note = n2d(bank_a_notes[7])
+    bank_notes = __extract_bank_notes(json, 'pads.bank-a.notes')
+    for pad in range(0, 8):
+        preset[1][0][pad].note = n2d(bank_notes[pad])
     # BANK B Notes
-    bank_b_notes = __extract_bank_notes(json, 'pads.bank-b.notes')
-    preset[1][1][0].note = n2d(bank_b_notes[0])
-    preset[1][1][1].note = n2d(bank_b_notes[1])
-    preset[1][1][2].note = n2d(bank_b_notes[2])
-    preset[1][1][3].note = n2d(bank_b_notes[3])
-    preset[1][1][4].note = n2d(bank_b_notes[4])
-    preset[1][1][5].note = n2d(bank_b_notes[5])
-    preset[1][1][6].note = n2d(bank_b_notes[6])
-    preset[1][1][7].note = n2d(bank_b_notes[7])
+    bank_notes = __extract_bank_notes(json, 'pads.bank-b.notes')
+    for pad in range(0, 8):
+        preset[1][1][pad].note = n2d(bank_notes[pad])
 
     print(preset)
 
     data = MPK_MINI_MK2.build(preset)
     assert data[0] == 0xF0 and data[-1] == 0xF7
-
     return data
 
 
 def __extract_bank_notes(json: dict, path: str) -> List[str]:
-    return [note.strip() for note in __json_lookup(
-        json, path, 'C1 C#1 D1 D#1 E1 F1 F#1 G1'
-    ).split(r' ')]
+    default_bank_notes = '- - - - - - - -'  # i.e. by default set to C-2
+    # Extract notes from preset path
+    notes = [
+        note.strip()
+        for note in __read_json(json, path, default_bank_notes).split(r' ')
+    ]
+    # Replace default value '-' with 'C-2'
+    return [sub(r'^-$', 'C-2', note) for note in notes]
 
 
-def __json_lookup(json: dict, path: str, default_value: Any) -> Any:
+def __read_json(json: dict, path: str, default_value: Any) -> Any:
     if not path:
         return default_value
     json = json if json else {}
