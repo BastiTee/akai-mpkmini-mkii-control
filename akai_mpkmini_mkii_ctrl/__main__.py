@@ -2,13 +2,24 @@
 """Command-line controller for AKAI MPKmini MK2."""
 
 
-from json import load
+import collections.abc
+from json import dumps, load
+from typing import List
 
 import click
 
 from akai_mpkmini_mkii_ctrl import controller as ctrl
 from akai_mpkmini_mkii_ctrl import json_converter
 from akai_mpkmini_mkii_ctrl.mpkmini_mk2 import MPK_MINI_MK2
+
+
+def __update(d: dict, u: collections.abc.Mapping) -> dict:
+    for k, v in u.items():
+        if isinstance(v, collections.abc.Mapping):
+            d[k] = __update(d.get(k, {}), v)
+        else:
+            d[k] = v
+    return d
 
 
 @click.group(help=__doc__)
@@ -65,19 +76,31 @@ def push_preset(
 @main.command(help='Push a JSON preset from file to the device')
 @click.option(
     '--input-file', '-i', required=True, metavar='FILE',
-    help='JSON input file'
+    help='JSON input file', multiple=True
+)
+@click.option(
+    '--check', '-c', is_flag=True, help='Check resulting JSON before pushing'
 )
 @click.pass_context
 def push_json_preset(
     ctx: click.Context,
-    input_file: str
+    input_file: List[str],
+    check: bool
 ) -> None:
-    with open(input_file, 'r') as input_file_handle:
-        json_data = load(input_file_handle)
-        binary = json_converter.json_to_binary(json_data)
-        config = MPK_MINI_MK2.parse(binary)
-        with ctrl.midi_connection(ctx.obj['midi_port']) as (m_in, m_out):
-            ctrl.send_config_to_device(config, ctx.obj['preset'], m_out)
+    # Combine all provided JSON files
+    json_data: dict = {}
+    for in_file in input_file:
+        with open(in_file, 'r') as in_file_handle:
+            json_preset = load(in_file_handle)
+        __update(json_data, json_preset)
+    if check:
+        print(dumps(json_data, indent=4))
+        input('Press key to continue...')
+    # Convert to binary structure
+    binary = json_converter.json_to_binary(json_data)
+    config = MPK_MINI_MK2.parse(binary)
+    with ctrl.midi_connection(ctx.obj['midi_port']) as (m_in, m_out):
+        ctrl.send_config_to_device(config, ctx.obj['preset'], m_out)
 
 
 @main.command(help='Pull a binary from the device and write to file')

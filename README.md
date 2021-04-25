@@ -50,7 +50,7 @@ pull-preset \
 --output-file ram-preset.mk2
 ```
 
-Upload preset from somewhere to program 2 (also works with factory presets):
+Upload preset from somewhere to program 2 (also works with factory binary presets):
 
 ```shell
 python3 -m akai_mpkmini_mkii_ctrl \
@@ -63,10 +63,13 @@ Experimental: Create a preset using a [JSON-based definition](resources/json-pre
 
 ```shell
 python3 -m akai_mpkmini_mkii_ctrl \
-convert \
---input-file resources/json-presets/default.json \
+push-json-preset \
+--input-file resources/json-presets/Logic-Base.json \
+--input-file resources/json-presets/Logic-RetroSynth+Juno.json \
 --output-file resources/json-presets/default.mk2
 ```
+
+Note that you are able to add up several input files in order for easier re-use.
 
 ## Sources
 
@@ -76,3 +79,11 @@ convert \
 - <https://github.com/gbevin/SendMIDI>
 - <https://github.com/gbevin/ReceiveMIDI>
 - <https://www.akaipro.com/mpk-mini-mkii>
+
+## Todos & ideas
+
+- [ ] JSON-patch support for all possible options
+- [ ] Removal of obsolete MPK_MINI_MK2.mk2 property
+- [ ] User-centric versus developer-centric usage documentation
+- [ ] Publish to pypi
+- [ ] Binary executables for Mac
