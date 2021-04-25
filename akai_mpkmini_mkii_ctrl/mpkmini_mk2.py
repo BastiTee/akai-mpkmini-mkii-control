@@ -130,8 +130,8 @@ Joy = Struct(                       # Default values allow Mk1->Mk2 conversion
 
 Pad = Struct(
     'note' / Byte,
-    'midicc' / Byte,
     'prog' / Byte,
+    'midicc' / Byte,
     'trigger' / Enum(
         Byte,          # MidiCC Only
         MOMENTARY=0,
