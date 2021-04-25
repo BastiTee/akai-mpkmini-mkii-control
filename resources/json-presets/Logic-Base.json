@@ -38,7 +38,7 @@
             "trigger": "M M M M M M M M"
         },
         "bank-b": {
-            "cc": "28 29 30 31 32 33 34 35",
+            "cc": "20 21 22 23 24 25 26 27",
             "prog": "9 10 11 12 13 14 15 16",
             "trigger": "M M M M M M M M"
         }
