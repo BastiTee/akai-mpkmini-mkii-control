@@ -59,7 +59,7 @@ push-preset \
 --input-file resources/factory-patches/preset1.mk2
 ```
 
-Experimental: Create a preset using a [JSON-based definition](resources/json-presets/default.json) file:
+Experimental: Create a preset using a [JSON-based definition](resources/json-presets/Logic-Base.json) file:
 
 ```shell
 python3 -m akai_mpkmini_mkii_ctrl \
