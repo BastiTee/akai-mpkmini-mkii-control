@@ -1,23 +1,4 @@
 {
-    "midi-channels": {
-        "pads": 1,
-        "keys": 1
-    },
-    "transponse": {
-        "octave": "OCT_M1",
-        "note": "TRANS_0"
-    },
-    "arpeggiator": {
-        "enable": "OFF",
-        "mode": "EXCLUSIVE",
-        "division": "DIV_1_8",
-        "clock": "INTERNAL",
-        "latch": "DISABLE",
-        "swing": "SWING_50",
-        "taps": 3,
-        "tempo": 190,
-        "octaves": "OCT_1"
-    },
     "pads": {
         "bank-a": {
             "notes": "C#2 D#2 - G#2 G2 D1 G#1 A#1"

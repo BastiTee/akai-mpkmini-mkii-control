@@ -1,35 +1,13 @@
 {
-    "midi-channels": {
-        "pads": 1,
-        "keys": 1
-    },
     "transponse": {
-        "octave": "OCT_M1",
-        "note": "TRANS_0"
-    },
-    "arpeggiator": {
-        "enable": "OFF",
-        "mode": "EXCLUSIVE",
-        "division": "DIV_1_8",
-        "clock": "INTERNAL",
-        "latch": "DISABLE",
-        "swing": "SWING_50",
-        "taps": 3,
-        "tempo": 190,
-        "octaves": "OCT_1"
+        "octave": "OCT_M1"
     },
     "pads": {
         "bank-a": {
-            "notes": "C#2 D1 G1 A1 C1 C#1 F#1 A#1",
-            "cc": "20 21 22 23 24 25 26 27",
-            "prog": "1 2 3 4 5 6 7 8",
-            "trigger": "M M M M M M M M"
+            "notes": "C#2 D1 G1 A1 C1 C#1 F#1 A#1"
         },
         "bank-b": {
-            "notes": "F#2 D1 G1 A1 C1 C#1 D#2 G#1",
-            "cc": "28 29 30 31 32 33 34 35",
-            "prog": "9 10 11 12 13 14 15 16",
-            "trigger": "M M M M M M M M"
+            "notes": "F#2 D1 G1 A1 C1 C#1 D#2 G#1"
         }
     }
 }

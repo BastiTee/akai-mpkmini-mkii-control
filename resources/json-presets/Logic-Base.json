@@ -26,23 +26,21 @@
         "y-up": 0,
         "y-down": 1
     },
+    "dials": {
+        "min-value": 0,
+        "max-value": 127,
+        "cc": "4 5 6 7 8 9 10 11"
+    },
     "pads": {
         "bank-a": {
-            "notes": "C#2 D1 G1 A1 C1 C#1 F#1 A#1",
             "cc": "20 21 22 23 24 25 26 27",
             "prog": "1 2 3 4 5 6 7 8",
             "trigger": "M M M M M M M M"
         },
         "bank-b": {
-            "notes": "F#2 D1 G1 A1 C1 C#1 D#2 G#1",
             "cc": "28 29 30 31 32 33 34 35",
             "prog": "9 10 11 12 13 14 15 16",
             "trigger": "M M M M M M M M"
         }
-    },
-    "dials": {
-        "min-value": 0,
-        "max-value": 127,
-        "cc": "4 5 6 7 8 9 10 11"
     }
 }
