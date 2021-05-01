@@ -1,5 +1,9 @@
 # Command-line controller for AKAI MPKmini MK II
 
+![MPKmini picture](resources/gfx/akai-picture.jpeg)
+
+[Source](https://commons.wikimedia.org/wiki/File:Akai_MPK_mini_MK2_-_angled_left_-_2014_NAMM_Show_(by_Matt_Vanacoro).jpg) – [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en)
+
 [![CI](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml/badge.svg)](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml)
 
 Best effort project to overcome the fact that AKAI doesn't seem to be interested in fixing Segmentation faults in their [MPKmini Editor](https://www.akaipro.com/mpk-mini-mkii). For questions reach out to <http://twitter.com/basti_tee>.
@@ -28,10 +32,11 @@ Options:
   --help               Show this message and exit.
 
 Commands:
-  convert       Converts a JSON-based preset to a binary preset
-  print-preset  Print preset in human readable format
-  pull-preset   Pull a binary from the device and write to file
-  push-preset   Push a binary preset from file to the device
+  convert           Converts a JSON-based preset to a binary preset
+  print-preset      Print preset in human readable format
+  pull-preset       Pull a binary from the device and write to file
+  push-json-preset  Push a JSON preset from file to the device
+  push-preset       Push a binary preset from file to the device
 ```
 
 Print preset stored on program 1 in human readable format:
