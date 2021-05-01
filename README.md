@@ -1,6 +1,7 @@
 # Command-line controller for AKAI MPKmini MK II
 
 <img src="resources/gfx/akai-picture.jpeg" width="400">
+
 [Source](https://commons.wikimedia.org/wiki/File:Akai_MPK_mini_MK2_-_angled_left_-_2014_NAMM_Show_(by_Matt_Vanacoro).jpg) – [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en)
 
 [![CI](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml/badge.svg)](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml)
