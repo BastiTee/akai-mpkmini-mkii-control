@@ -64,10 +64,11 @@ push-preset \
 --input-file resources/factory-patches/preset1.mk2
 ```
 
-Experimental: Create a preset using a [JSON-based definition](resources/json-presets/Logic-Base.json) file:
+Push a self-defined preset using a [JSON-based definition file](resources/json-presets/Logic-Base.json):
 
 ```shell
 python3 -m akai_mpkmini_mkii_ctrl \
+--preset 0 \
 push-json-preset \
 --input-file resources/json-presets/Logic-Base.json \
 --input-file resources/json-presets/Logic-RetroSynth+Juno.json
