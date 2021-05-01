@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-r"""Convert JSON presets to Construct presets.
-
-TODO This does not yet convert all possible values from JSON ¯\_(ツ)_/¯
-But refer to resources/json-presets/*.json and this code to extend it.
-"""
+r"""Convert JSON presets to Construct presets."""
 
 from os import path
 from re import sub
