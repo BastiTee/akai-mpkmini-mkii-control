@@ -87,7 +87,7 @@ Note that you are able to add up several input files in order for easier re-use.
 
 ## Todos & ideas
 
-- [ ] JSON-patch support for all possible options
+- [x] JSON-patch support for all possible options
 - [ ] Removal of obsolete MPK_MINI_MK2.mk2 property
 - [ ] User-centric versus developer-centric usage documentation
 - [ ] Publish to pypi
