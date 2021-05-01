@@ -70,8 +70,7 @@ Experimental: Create a preset using a [JSON-based definition](resources/json-pre
 python3 -m akai_mpkmini_mkii_ctrl \
 push-json-preset \
 --input-file resources/json-presets/Logic-Base.json \
---input-file resources/json-presets/Logic-RetroSynth+Juno.json \
---output-file resources/json-presets/default.mk2
+--input-file resources/json-presets/Logic-RetroSynth+Juno.json
 ```
 
 Note that you are able to add up several input files in order for easier re-use.
