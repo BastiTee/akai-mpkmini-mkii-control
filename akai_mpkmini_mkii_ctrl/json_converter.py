@@ -86,7 +86,7 @@ def json_to_binary(json: dict) -> List[int]:
             preset[1][entry[0]][pad].prog = prog[pad] - 1
             preset[1][entry[0]][pad].trigger = trigger[pad]
 
-    # print(preset)
+    print(preset)
 
     # Finalise
     data = MPK_MINI_MK2.build(preset)
@@ -136,6 +136,9 @@ def __read_json(json: dict, path: str, default_value: Any) -> Any:
     try:
         for breadcrumb in path.split('.'):
             json = json[breadcrumb]
-        return json if json else default_value
+        value = json if json else default_value
+        print(f'JSON | {path} = {value}')
+        return value
     except KeyError:
+        print(f'!!! JSON | {path} = {default_value} (Key not found)')
         return default_value
