@@ -41,7 +41,7 @@ setup(
     install_requires=[
         'python-rtmidi',
         'click',
-        'construct==2.9.52'
+        'construct<2.10'
     ],
     # Licensing and copyright
     license='Apache 2.0'
