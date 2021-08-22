@@ -156,10 +156,14 @@ class TestNoteConverter:  # noqa: D101
     def test_note_to_decimal(self, note: str, expected_decimal: int) -> None:
         actual_decimal: int = note_converter.note_to_decimal(note)
         assert actual_decimal == expected_decimal
+        actual_decimal = note_converter.note_to_decimal(note.lower())
+        assert actual_decimal == expected_decimal
 
-    @pytest.mark.parametrize('note', [None, '', 'X#1', 'A8', 'B-3'])
+    @pytest.mark.parametrize('note', [
+        None, '', 'X#1', 'A8', 'B-3', 'DA', 'A', 'm', 12
+    ])
     def test_note_to_decimal_exceptions(self, note: str) -> None:
-        with pytest.raises(ValueError, match=r'Note .* unknown'):
+        with pytest.raises(ValueError, match=f'Note "{note}" unknown'):
             note_converter.note_to_decimal(note)
 
     @pytest.mark.parametrize('expected_note, decimal', TEST_PARAMETERS)
@@ -167,7 +171,7 @@ class TestNoteConverter:  # noqa: D101
         actual_note: str = note_converter.decimal_to_note(decimal)
         assert actual_note == expected_note
 
-    @pytest.mark.parametrize('decimal', [None, -1, 128, 1000])
+    @pytest.mark.parametrize('decimal', [None, -1, 128, 1000, 3.14])
     def test_decimal_to_note_exceptions(self, decimal: int) -> None:
-        with pytest.raises(ValueError, match=r'Decimal .* unknown'):
+        with pytest.raises(ValueError, match=f'Decimal "{decimal}" unknown'):
             note_converter.decimal_to_note(decimal)
