@@ -1,0 +1,27 @@
+# How to release:
+#
+# - Switch to latest main branch after making sure it is stable
+# - Get latest changelog via make changelog and update CHANGELOG.md
+# - Run NEXT_VERSION=0.0.3 make release
+# - Trigger this Github action to release to PyPi
+
+name: Release
+
+on:
+    workflow_dispatch:
+
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-python@v1
+
+            - name: Release
+              run: |
+                  python3 -m pip install pipenv
+                  TWINE_USERNAME="${{ secrets.TWINE_USERNAME }}" \
+                  TWINE_PASSWORD="${{ secrets.TWINE_PASSWORD }}" \
+                  make publish
