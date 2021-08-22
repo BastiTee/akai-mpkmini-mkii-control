@@ -120,27 +120,5 @@ def pull_preset(
             output_file_handle.write(bytes(binary))
 
 
-@main.command(help='Converts a JSON-based preset to a binary preset')
-@click.option(
-    '--input-file', '-i', required=True, metavar='FILE',
-    help='JSON input file'
-)
-@click.option(
-    '--output-file', '-o', required=True, metavar='FILE',
-    help='Binary output file, i.e., a regular *.mk2 preset file'
-)
-@click.pass_context
-def convert(
-    ctx: click.Context,
-    input_file: str,
-    output_file: str
-) -> None:
-    with open(input_file, 'r') as input_file_handle:
-        json_data = load(input_file_handle)
-        binary = json_converter.json_to_binary(json_data)
-        with open(output_file, 'wb') as output_file_handle:
-            output_file_handle.write(bytes(binary))
-
-
 if __name__ == '__main__':
     main()
