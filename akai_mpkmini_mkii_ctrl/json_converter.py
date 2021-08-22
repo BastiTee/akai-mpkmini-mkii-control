@@ -140,5 +140,6 @@ def __read_json(json: dict, path: str, default_value: Any) -> Any:
         logging.debug(f'JSON | {path} = {value}')
         return value
     except KeyError:
-        logging.error(f'!!! JSON | {path} = {default_value} (Key not found)')
+        logging.warn(f'!!! JSON | {path} = {default_value} '
+                     + '(Key not found. Default will be used.)')
         return default_value
