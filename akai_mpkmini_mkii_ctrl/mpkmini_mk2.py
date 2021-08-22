@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Construct for MPKmini MK2 Patch data.
+r"""Construct for MPKmini MK2 Patch data.
 
 Source: https://github.com/mungewell/mpd-utils/blob/master/mpk_mini.py
 """

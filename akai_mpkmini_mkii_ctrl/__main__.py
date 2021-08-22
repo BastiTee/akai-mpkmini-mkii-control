@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Command-line controller for AKAI MPKmini MK2."""
+r"""Command-line controller for AKAI MPKmini MK2."""
 
 
 import collections.abc
