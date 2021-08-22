@@ -153,7 +153,8 @@ def note_to_decimal(note: str) -> int:
 
 
 def decimal_to_note(decimal: int) -> str:
-    assert decimal in MAP.values()
+    if decimal not in MAP.values():
+        raise ValueError(f'Decimal "{decimal}" unknown.')
     for key in MAP.keys():
         if MAP[key] == decimal:
             return key
