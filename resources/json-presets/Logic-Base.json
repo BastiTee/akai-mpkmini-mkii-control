@@ -20,6 +20,7 @@
     },
     "joystick": {
         "axis-x": "CC2",
+        "axis-y": "PBEND",
         "x-up": 1,
         "x-down": 1,
         "axis_y": "PBEND",
