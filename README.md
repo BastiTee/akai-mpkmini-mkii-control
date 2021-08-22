@@ -87,6 +87,12 @@ You can also install the controller to your system using:
 make install
 ```
 
+To use the local `pipenv`-based version you can use the following command from where you cloned the repository:
+
+```shell
+pipenv run python akai_mpkmini_mkii_ctrl
+```
+
 ## Resources
 
 The implementation is based upon the following resources:
