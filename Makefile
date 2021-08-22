@@ -87,3 +87,8 @@ install: all
 run:
 	@echo Execute akai_mpkmini_mkii_ctrl directly
 	pipenv run python -m akai_mpkmini_mkii_ctrl
+
+publish: all
+	@echo Publish pype to pypi.org
+	TWINE_USERNAME=$(TWINE_USERNAME) TWINE_PASSWORD=$(TWINE_PASSWORD) \
+	pipenv run twine upload dist/*
