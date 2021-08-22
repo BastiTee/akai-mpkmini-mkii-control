@@ -1,6 +1,6 @@
 # Command-line controller for AKAI MPKmini MK II
 
-<img src="resources/gfx/akai-picture.jpeg" width="400">
+![](resources/gfx/akai-picture.jpeg)
 
 [Source](https://commons.wikimedia.org/wiki/File:Akai_MPK_mini_MK2_-_angled_left_-_2014_NAMM_Show_(by_Matt_Vanacoro).jpg) – [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en)
 
@@ -84,11 +84,3 @@ Note that you are able to add up several input files in order for easier re-use.
 - <https://github.com/gbevin/SendMIDI>
 - <https://github.com/gbevin/ReceiveMIDI>
 - <https://www.akaipro.com/mpk-mini-mkii>
-
-## Todos & ideas
-
-- [x] JSON-patch support for all possible options
-- [ ] Removal of obsolete MPK_MINI_MK2.mk2 property
-- [ ] User-centric versus developer-centric usage documentation
-- [ ] Publish to pypi
-- [ ] Binary executables for Mac
