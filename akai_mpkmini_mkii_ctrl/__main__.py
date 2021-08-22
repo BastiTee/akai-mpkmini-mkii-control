@@ -27,12 +27,12 @@ def __update(d: dict, u: collections.abc.Mapping) -> dict:
 @click.option(
     '--preset', '-p', required=True, metavar='NUM',
     type=click.Choice(['0', '1', '2', '3', '4']), default='0',
-    help='Target preset slot (0 = RAM, 1-4 = Stored preset)'
+    help='Target preset slot (0 = RAM, 1-4 = Stored preset, default: 0)'
 )
 @click.option(
     '--midi-port', '-m', required=True, metavar='NUM',
     type=click.INT, default=0,
-    help='MIDI port (0 = Omni, > 0 = Specific MIDI port)'
+    help='MIDI Port on which the device is located (default: 0)'
 )
 @click.option(
     '--verbose', '-v', is_flag=True,

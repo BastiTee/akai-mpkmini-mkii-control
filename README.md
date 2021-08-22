@@ -30,8 +30,8 @@ To install from source you can use:
 `akai_mpkmini_mkii_ctrl` supports a set of commands to push or pull presets to and from the device. All commands have a common set of options:
 
 ```
--p, --preset NUM     Target preset slot (0 = RAM, 1-4 = Stored preset)
--m, --midi-port NUM  MIDI port (0 = Omni, > 0 = Specific MIDI port)
+-p, --preset NUM     Target preset slot (0 = RAM, 1-4 = Stored preset, default: 0)
+-m, --midi-port NUM  MIDI Port on which the device is located (default: 0)
 -v, --verbose        Verbose output
 --help               Show this message and exit.
 ```

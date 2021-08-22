@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3
+
+- Fix misleading documentation on MIDI channel option
+
 ## 0.1.2
 
 - Replace note lookup with a calculating function [#6](https://github.com/BastiTee/akai-mpkmini-mkii-control/pull/6)
