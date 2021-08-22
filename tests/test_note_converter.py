@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 r"""Test suite for akai_mpkmini_mkii_ctrl.note_converter."""
 
-import __future__  # noqa: F401
-
 import pytest
 
 from akai_mpkmini_mkii_ctrl import note_converter
