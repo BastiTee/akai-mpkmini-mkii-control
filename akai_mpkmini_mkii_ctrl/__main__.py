@@ -26,11 +26,12 @@ def __update(d: dict, u: collections.abc.Mapping) -> dict:
 @click.option(
     '--preset', '-p', required=True, metavar='NUM',
     type=click.Choice(['0', '1', '2', '3', '4']), default='0',
-    help='Preset selector (0 = RAM, 1-4 Stored preset)'
+    help='Target preset slot (0 = RAM, 1-4 = Stored preset)'
 )
 @click.option(
     '--midi-port', '-m', required=True, metavar='NUM',
-    type=click.INT, default=0, help='MIDI port'
+    type=click.INT, default=0,
+    help='MIDI port (0 = Omni, > 0 = Specific MIDI port)'
 )
 @click.option(
     '--verbose', '-v', is_flag=True,
@@ -49,7 +50,7 @@ def main(
     ctx.obj['verbose'] = verbose
 
 
-@main.command(help='Print preset in human readable format')
+@main.command(help='Print preset on device in human readable format')
 @click.pass_context
 def print_preset(ctx: click.Context) -> None:
     with ctrl.midi_connection(ctx.obj['midi_port']) as (m_in, m_out):
@@ -57,7 +58,7 @@ def print_preset(ctx: click.Context) -> None:
         print(config)
 
 
-@main.command(help='Push a binary preset from file to the device')
+@main.command(help='Push a local binary preset to the device')
 @click.option(
     '--input-file', '-i', required=True, metavar='FILE',
     help='Binary input file, i.e., a regular *.mk2 preset file'
@@ -73,7 +74,7 @@ def push_preset(
         )
 
 
-@main.command(help='Push a JSON preset from file to the device')
+@main.command(help='Push a local JSON preset to the device')
 @click.option(
     '--input-file', '-i', required=True, metavar='FILE',
     help='JSON input file', multiple=True

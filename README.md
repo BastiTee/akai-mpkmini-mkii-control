@@ -6,9 +6,9 @@
 
 [![CI](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml/badge.svg)](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml)
 
-Best effort project to overcome the fact that AKAI doesn't seem to be interested in fixing Segmentation faults in their [MPKmini Editor](https://www.akaipro.com/mpk-mini-mkii). For questions reach out to <http://twitter.com/basti_tee>.
+Best effort project to overcome the fact that AKAI doesn't seem to be interested in fixing Segmentation faults in their [MPKmini Editor](https://www.akaipro.com/mpk-mini-mkii).
 
-It is currently mostly fixing my own itches but it would be a pleasure to find like-minded people who would like to contribute :)
+It currently fixes my own itches but I gladly accept feedback!
 
 ## Install
 
@@ -18,35 +18,23 @@ make install
 
 ## Usage
 
+`akai_mpkmini_mkii_ctrl` supports a set of commands to push or pull presets to and from the device. All commands have a common set of options:
+
 ```
-Usage: akai_mpkmini_mkii_ctrl [OPTIONS] COMMAND [ARGS]...
-
-  Command-line controller for AKAI MPKmini MK2.
-
-Options:
-  -p, --preset NUM     Preset selector (0 = RAM, 1-4 Stored preset)
-                       [required]
-
-  -m, --midi-port NUM  MIDI port  [required]
-  -v, --verbose        Verbose output
-  --help               Show this message and exit.
-
-Commands:
-  convert           Converts a JSON-based preset to a binary preset
-  print-preset      Print preset in human readable format
-  pull-preset       Pull a binary from the device and write to file
-  push-json-preset  Push a JSON preset from file to the device
-  push-preset       Push a binary preset from file to the device
+-p, --preset NUM     Target preset slot (0 = RAM, 1-4 = Stored preset)
+-m, --midi-port NUM  MIDI port (0 = Omni, > 0 = Specific MIDI port)
+-v, --verbose        Verbose output
+--help               Show this message and exit.
 ```
 
-Print preset stored on program 1 in human readable format:
+Print preset stored in slot 1 in human readable format:
 
 ```shell
 python3 -m akai_mpkmini_mkii_ctrl \
 --preset 1 print-preset
 ```
 
-Download preset stored in RAM to a local file:
+Download preset stored in RAM to a local binary file:
 
 ```shell
 python3 -m akai_mpkmini_mkii_ctrl \
@@ -55,7 +43,7 @@ pull-preset \
 --output-file ram-preset.mk2
 ```
 
-Upload preset from somewhere to program 2 (also works with factory binary presets):
+Upload local binary preset to preset slot 2 (also works with factory binary presets):
 
 ```shell
 python3 -m akai_mpkmini_mkii_ctrl \
@@ -64,7 +52,7 @@ push-preset \
 --input-file resources/factory-patches/preset1.mk2
 ```
 
-Push a self-defined preset using a [JSON-based definition file](resources/json-presets/Logic-Base.json):
+Push a self-defined preset using a JSON-based definition file ([Example](resources/json-presets/Logic-Base.json)):
 
 ```shell
 python3 -m akai_mpkmini_mkii_ctrl \
@@ -74,9 +62,11 @@ push-json-preset \
 --input-file resources/json-presets/Logic-RetroSynth+Juno.json
 ```
 
-Note that you are able to add up several input files in order for easier re-use.
+Notice that you are able to combine several input files for easier re-use. The configurations are applied in order, e.g., in this case [`Logic-Base.json`](resources/json-presets/Logic-Base.json) will be extended with the properties found in [`Logic-RetroSynth+Juno.json`](resources/json-presets/Logic-RetroSynth+Juno.json).
 
-## Sources
+## Resources
+
+The implementation is based upon the following resources:
 
 - <https://github.com/gljubojevic/akai-mpk-mini-editor>
 - <https://github.com/mungewell/mpd-utils>
