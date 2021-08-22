@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""Basic test suite."""
+r"""Test suite for akai_mpkmini_mkii_ctrl.note_converter."""
 
 import __future__  # noqa: F401
 
