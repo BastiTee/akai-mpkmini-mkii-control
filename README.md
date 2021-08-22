@@ -12,7 +12,7 @@ It currently fixes my own itches but I gladly accept feedback!
 
 ## Install
 
-To install via [PyPi](https://pypi.org/):
+To install via [PyPi](https://pypi.org/project/akai-mpkmini-mkii-ctrl/):
 
 ```
 pip3 install --user akai-mpkmini-mkii-ctrl
