@@ -12,7 +12,16 @@ It currently fixes my own itches but I gladly accept feedback!
 
 ## Install
 
-TODO
+To install via [PyPi](https://pypi.org/):
+
+```
+
+```
+
+To install from source you can use:
+
+- `python3 setup.py install`, or
+- `make install` which will run a `pipenv` including linting, tests, etc.
 
 ## Usage
 
@@ -66,13 +75,13 @@ push-json-preset \
 
 You can prepare a `pipenv`-based development environment using:
 
-```
+```shell
 make clean venv
 ```
 
 You can also install the controller to your system using:
 
-```
+```shell
 make install
 ```
 
