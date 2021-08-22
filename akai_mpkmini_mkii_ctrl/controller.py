@@ -7,7 +7,6 @@ from contextlib import contextmanager
 from time import sleep
 from typing import Generator, List, Tuple
 
-import click
 import rtmidi
 from rtmidi import MidiIn, MidiOut, RtMidiError, midiutil
 
