@@ -4,7 +4,7 @@
 
 [Source](https://commons.wikimedia.org/wiki/File:Akai_MPK_mini_MK2_-_angled_left_-_2014_NAMM_Show_(by_Matt_Vanacoro).jpg) – [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en)
 
-[![CI](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml/badge.svg)](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml)
+[![CI](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml/badge.svg)](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml) ![PyPU - Version](https://img.shields.io/pypi/v/akai-mpkmini-mkii-ctrl.svg) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/akai-mpkmini-mkii-ctrl.svg)
 
 Best effort project to overcome the fact that AKAI doesn't seem to be interested in fixing Segmentation faults in their [MPKmini Editor](https://www.akaipro.com/mpk-mini-mkii).
 
