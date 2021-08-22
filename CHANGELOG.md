@@ -2,7 +2,7 @@
 
 ## 0.1.1
 
-- Fix installation and release process #3
+- Fix installation and release process [#3](https://github.com/BastiTee/akai-mpkmini-mkii-control/pull/3)
 
 ## 0.1.0
 
