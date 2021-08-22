@@ -14,7 +14,7 @@ with open(path.join(path.abspath(path.dirname(__file__)), 'README.md'),
 setup(
     # Basic project information
     name='akai-mpkmini-mkii-ctrl',
-    version='0.0.2',
+    version='0.1.0',
     # Authorship and online reference
     author='Basti Tee',
     author_email='basti.tee@posteo.de',
