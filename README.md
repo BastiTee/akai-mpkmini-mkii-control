@@ -12,9 +12,7 @@ It currently fixes my own itches but I gladly accept feedback!
 
 ## Install
 
-```
-make install
-```
+TODO
 
 ## Usage
 
@@ -62,6 +60,20 @@ python3 -m akai_mpkmini_mkii_ctrl \
 push-json-preset \
 --input-file resources/json-presets/Logic-Base.json \
 --input-file resources/json-presets/Logic-RetroSynth+Juno.json
+```
+
+## Development
+
+You can prepare a `pipenv`-based development environment using:
+
+```
+make clean venv
+```
+
+You can also install the controller to your system using:
+
+```
+make install
 ```
 
 ## Resources
