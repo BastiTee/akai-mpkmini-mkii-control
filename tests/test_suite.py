@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Basic test suite."""
+r"""Basic test suite."""
 
 import __future__  # noqa: F401
 

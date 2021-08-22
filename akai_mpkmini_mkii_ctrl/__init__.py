@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-"""Module init-file."""
+r"""Module init-file."""

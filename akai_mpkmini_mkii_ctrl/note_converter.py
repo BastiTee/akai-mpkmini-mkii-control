@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Convert notes to and from decimal."""
+r"""Convert notes to and from decimal."""
 
 from typing import Dict
 

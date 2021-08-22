@@ -14,7 +14,7 @@ with open(path.join(path.abspath(path.dirname(__file__)), 'README.md'),
 setup(
     # Basic project information
     name='akai-mpkmini-mkii-ctrl',
-    version='0.0.1',
+    version='0.0.2',
     # Authorship and online reference
     author='Basti Tee',
     author_email='basti.tee@posteo.de',
@@ -32,7 +32,8 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8'
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9'
     ],
     # Package configuration
     packages=find_packages(exclude=('tests',)),

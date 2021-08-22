@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Midi controller."""
+r"""Midi controller."""
 
 import binascii
 from contextlib import contextmanager
@@ -57,7 +56,6 @@ def send_binary_to_device(
     preset: int,
     midi_out: MidiOut
 ) -> None:
-    # TODO Input validation
     with open(file_path, 'rb') as in_file_byte:
         data = in_file_byte.read(2000)
     config = MPK_MINI_MK2.parse(data)
@@ -69,7 +67,6 @@ def send_config_to_device(
     preset: int,
     midi_out: MidiOut
 ) -> None:
-    # TODO Input validation
     config[0].preset = preset
     data = MPK_MINI_MK2.build(config)
     assert data[0] == 0xF0 and data[-1] == 0xF7
@@ -83,7 +80,6 @@ def get_binary_from_device(
     midi_in: MidiIn,
     midi_out: MidiOut
 ) -> List[int]:
-    # TODO Input validation
     send_sysex_from_hex_string(f'f0 47 00 26 66 00 01 0{preset} f7', midi_out)
     return receive_sysex(midi_in)
 
@@ -93,7 +89,6 @@ def get_config_from_device(
     midi_in: MidiIn,
     midi_out: MidiOut
 ) -> MPK_MINI_MK2:
-    # TODO Input validation
     message = get_binary_from_device(preset, midi_in, midi_out)
     return MPK_MINI_MK2.parse(bytearray(message))
 
