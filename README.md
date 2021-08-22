@@ -27,14 +27,16 @@ make install
 --help               Show this message and exit.
 ```
 
-Print preset stored in slot 1 in human readable format:
+### Commands
+
+`print-preset`: Print preset on device in human readable format. In this example it will print the preset stored in slot 1 on the device.
 
 ```shell
 python3 -m akai_mpkmini_mkii_ctrl \
 --preset 1 print-preset
 ```
 
-Download preset stored in RAM to a local binary file:
+`pull-preset`: Pull a binary from the device and write to file.
 
 ```shell
 python3 -m akai_mpkmini_mkii_ctrl \
@@ -43,7 +45,7 @@ pull-preset \
 --output-file ram-preset.mk2
 ```
 
-Upload local binary preset to preset slot 2 (also works with factory binary presets):
+`push-preset`: Push a local binary preset to the device. This also works with [factory binary presets](resources/factory-patches).
 
 ```shell
 python3 -m akai_mpkmini_mkii_ctrl \
@@ -52,7 +54,7 @@ push-preset \
 --input-file resources/factory-patches/preset1.mk2
 ```
 
-Push a self-defined preset using a JSON-based definition file ([Example](resources/json-presets/Logic-Base.json)):
+`push-json-preset`: Push a local JSON preset ([Example](resources/json-presets/Logic-Base.json)) to the device. Notice that you are able to combine several input files for easier re-use. The configurations are applied in order, e.g., in this case [`Logic-Base.json`](resources/json-presets/Logic-Base.json) will be extended with the properties found in [`Logic-RetroSynth+Juno.json`](resources/json-presets/Logic-RetroSynth+Juno.json).
 
 ```shell
 python3 -m akai_mpkmini_mkii_ctrl \
@@ -61,8 +63,6 @@ push-json-preset \
 --input-file resources/json-presets/Logic-Base.json \
 --input-file resources/json-presets/Logic-RetroSynth+Juno.json
 ```
-
-Notice that you are able to combine several input files for easier re-use. The configurations are applied in order, e.g., in this case [`Logic-Base.json`](resources/json-presets/Logic-Base.json) will be extended with the properties found in [`Logic-RetroSynth+Juno.json`](resources/json-presets/Logic-RetroSynth+Juno.json).
 
 ## Resources
 
