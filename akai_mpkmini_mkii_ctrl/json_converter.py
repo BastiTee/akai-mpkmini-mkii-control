@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 r"""Convert JSON presets to Construct presets."""
 
+import logging
 from os import path
 from re import sub
 from typing import Any, List
@@ -85,7 +86,7 @@ def json_to_binary(json: dict) -> List[int]:
             preset[1][entry[0]][pad].prog = prog[pad] - 1
             preset[1][entry[0]][pad].trigger = trigger[pad]
 
-    print(preset)
+    logging.debug(preset)
 
     # Finalise
     data = MPK_MINI_MK2.build(preset)
@@ -100,7 +101,7 @@ def __extract_bank_notes(json: dict, path: str) -> List[str]:
         note.strip()
         for note in __read_json(json, path, default_bank_notes).split(r' ')
     ]
-    print(f'{path} = {notes}')
+    logging.debug(f'{path} = {notes}')
     # Replace default value '-' with 'C-2'
     return [sub(r'^-$', 'C-2', note) for note in notes]
 
@@ -108,7 +109,7 @@ def __extract_bank_notes(json: dict, path: str) -> List[str]:
 def __extract_bank_int(json: dict, path: str, default_bank: str) -> List[int]:
     int_string = __read_json(json, path, default_bank)
     ints = [int(value.strip()) for value in int_string.split(' ')]
-    print(f'{path} = {ints}')
+    logging.debug(f'{path} = {ints}')
     return ints
 
 
@@ -124,7 +125,7 @@ def __extract_bank_trigger(
             trigger.append('MOMENTARY')
         else:
             raise ValueError('Only T and M is supported')
-    print(f'{path} = {trigger}')
+    logging.debug(f'{path} = {trigger}')
     return trigger
 
 
@@ -136,8 +137,8 @@ def __read_json(json: dict, path: str, default_value: Any) -> Any:
         for breadcrumb in path.split('.'):
             json = json[breadcrumb]
         value = json if json else default_value
-        print(f'JSON | {path} = {value}')
+        logging.debug(f'JSON | {path} = {value}')
         return value
     except KeyError:
-        print(f'!!! JSON | {path} = {default_value} (Key not found)')
+        logging.error(f'!!! JSON | {path} = {default_value} (Key not found)')
         return default_value

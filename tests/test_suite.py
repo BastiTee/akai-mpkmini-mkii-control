@@ -16,5 +16,4 @@ class TestUtils:  # noqa: D101
             number_left: int,
             number_right: int
     ) -> None:
-        print(number_left, number_right)
         assert True

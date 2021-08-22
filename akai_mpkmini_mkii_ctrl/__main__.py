@@ -3,6 +3,7 @@ r"""Command-line controller for AKAI MPKmini MK2."""
 
 
 import collections.abc
+import logging
 from json import dumps, load
 from typing import List
 
@@ -47,7 +48,9 @@ def main(
     ctx.ensure_object(dict)
     ctx.obj['preset'] = int(preset)
     ctx.obj['midi_port'] = int(midi_port)
-    ctx.obj['verbose'] = verbose
+    # Setup logging
+    log_level = logging.DEBUG if verbose else logging.INFO
+    logging.basicConfig(format='%(levelname)s:%(message)s', level=log_level)
 
 
 @main.command(help='Print preset on device in human readable format')
@@ -55,7 +58,7 @@ def main(
 def print_preset(ctx: click.Context) -> None:
     with ctrl.midi_connection(ctx.obj['midi_port']) as (m_in, m_out):
         config = ctrl.get_config_from_device(ctx.obj['preset'], m_in, m_out)
-        print(config)
+        logging.info(config)
 
 
 @main.command(help='Push a local binary preset to the device')
@@ -95,7 +98,7 @@ def push_json_preset(
             json_preset = load(in_file_handle)
         __update(json_data, json_preset)
     if check:
-        print(dumps(json_data, indent=4))
+        logging.info(dumps(json_data, indent=4))
         input('Press key to continue...')
     # Convert to binary structure
     binary = json_converter.json_to_binary(json_data)
