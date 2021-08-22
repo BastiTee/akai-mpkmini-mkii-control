@@ -20,6 +20,8 @@ export PYPE_CONFIG_FOLDER = $(shell pwd)/.venv/.pype-cli
 # Process variables
 VERSION = $(shell python3 setup.py --version)
 PY_FILES := setup.py akai_mpkmini_mkii_ctrl tests
+LAST_VERSION := $(shell git tag | sort --version-sort -r | head -n1)
+VERSION_HASH := $(shell git show-ref -s $(LAST_VERSION))
 
 all: clean venv build
 
