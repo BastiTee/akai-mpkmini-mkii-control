@@ -4,10 +4,10 @@
     },
     "pads": {
         "bank-a": {
-            "notes": "C#2 D1 G1 A1 C1 C#1 F#1 A#1"
+            "notes": "C1 D1 C#1 D#1 F#1 G#1 A#1 C#2"
         },
         "bank-b": {
-            "notes": "F#2 D1 G1 A1 C1 C#1 D#2 G#1"
+            "notes": "D#2 F1 G1 A1 F#2 G2 A2 B2"
         }
     }
 }
