@@ -18,6 +18,8 @@ To install via [PyPi](https://pypi.org/):
 pip3 install --user akai-mpkmini-mkii-ctrl
 ```
 
+Please note that the dependency `python-rtmidi` requires compilation resources to be present on your system. Refer to the [project documentation](https://spotlightkid.github.io/python-rtmidi/installation.html) for details.
+
 To install from source you can use:
 
 - `python3 setup.py install`, or
