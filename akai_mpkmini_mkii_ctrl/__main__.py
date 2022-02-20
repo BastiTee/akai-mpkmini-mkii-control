@@ -12,6 +12,7 @@ import click
 from akai_mpkmini_mkii_ctrl import controller as ctrl
 from akai_mpkmini_mkii_ctrl import json_converter
 from akai_mpkmini_mkii_ctrl.mpkmini_mk2 import MPK_MINI_MK2
+from config_reader import load_config_from_file, update_config
 
 
 def __update(d: dict, u: collections.abc.Mapping) -> dict:
@@ -86,22 +87,21 @@ def push_preset(
     '--check', '-c', is_flag=True, help='Check resulting JSON before pushing'
 )
 @click.pass_context
-def push_json_preset(
+def push_config_preset(
     ctx: click.Context,
     input_file: List[str],
     check: bool
 ) -> None:
     # Combine all provided JSON files
-    json_data: dict = {}
+    config_data: dict = {}
     for in_file in input_file:
-        with open(in_file, 'r') as in_file_handle:
-            json_preset = load(in_file_handle)
-        __update(json_data, json_preset)
+        config_data_in_file = load_config_from_file(in_file)
+        config_data = update_config(config_data, config_data_in_file)
     if check:
-        logging.info(dumps(json_data, indent=4))
+        logging.info(dumps(config_data, indent=4))
         input('Press key to continue...')
     # Convert to binary structure
-    binary = json_converter.json_to_binary(json_data)
+    binary = json_converter.json_to_binary(config_data)
     config = MPK_MINI_MK2.parse(binary)
     with ctrl.midi_connection(ctx.obj['midi_port']) as (m_in, m_out):
         ctrl.send_config_to_device(config, ctx.obj['preset'], m_out)
