@@ -94,9 +94,13 @@ def push_config_preset(
 ) -> None:
     # Combine all provided JSON files
     config_data: dict = {}
-    for in_file in input_file:
-        config_data_in_file = load_config_from_file(in_file)
-        config_data = update_config(config_data, config_data_in_file)
+    try:
+        for in_file in input_file:
+            config_data_in_file = load_config_from_file(in_file)
+            config_data = update_config(config_data, config_data_in_file)
+    except ValueError as ve:
+        logging.error(ve)
+        exit(1)
     if check:
         logging.info(dumps(config_data, indent=4))
         input('Press key to continue...')
