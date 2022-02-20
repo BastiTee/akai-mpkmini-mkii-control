@@ -19,8 +19,7 @@ def load_config_from_file(file_path: str) -> dict:
         # ... then YAML format
         with open(file_path, 'r') as yaml_handle:
             return yaml.safe_load(yaml_handle)
-    except yaml.YAMLError as ye:
-        print(ye)
+    except yaml.YAMLError:
         pass
 
     # ... and raise error if nothing was loadable.
