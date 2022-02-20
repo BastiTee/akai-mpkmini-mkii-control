@@ -4,15 +4,15 @@ r"""Command-line controller for AKAI MPKmini MK2."""
 
 import collections.abc
 import logging
-from json import dumps, load
+from json import dumps
 from typing import List
 
 import click
+from config_reader import load_config_from_file, update_config
 
 from akai_mpkmini_mkii_ctrl import controller as ctrl
 from akai_mpkmini_mkii_ctrl import json_converter
 from akai_mpkmini_mkii_ctrl.mpkmini_mk2 import MPK_MINI_MK2
-from config_reader import load_config_from_file, update_config
 
 
 def __update(d: dict, u: collections.abc.Mapping) -> dict:
