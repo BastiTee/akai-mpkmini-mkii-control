@@ -63,13 +63,13 @@ push-preset \
 --input-file resources/factory-patches/preset1.mk2
 ```
 
-`push-config-preset`: Push a local configuration preset ([Example](resources/config-presets/Logic-Base.yaml)) to the device. Notice that you are able to combine several input files for easier re-use. YAML and JSON format is supported. The configurations are applied in order, e.g., in this case [`Logic-Base.yaml`](resources/config-presets/Logic-Base.yaml) will be extended with the properties found in [`Logic-RetroSynth+Juno.yaml`](resources/config-presets/Logic-RetroSynth+Juno.yaml).
+`push-config-preset`: Push a local configuration preset ([Example](resources/config-presets/Base-Config.yaml)) to the device. Notice that you are able to combine several input files for easier re-use. YAML and JSON format is supported. The configurations are applied in order, e.g., in this case [`Base-Config.yaml`](resources/config-presets/Base-Config.yaml) will be extended/overwritten with the properties found in [`Logic-RetroSynth+Juno.yaml`](resources/config-presets/Logic-RetroSynth+Juno.yaml).
 
 ```shell
 python3 -m akai_mpkmini_mkii_ctrl \
 --preset 0 \
 push-config-preset \
---input-file resources/config-presets/Logic-Base.yaml \
+--input-file resources/config-presets/Base-Config.yaml \
 --input-file resources/config-presets/Logic-RetroSynth+Juno.yaml
 ```
 

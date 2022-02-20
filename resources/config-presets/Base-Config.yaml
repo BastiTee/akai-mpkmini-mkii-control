@@ -1,0 +1,87 @@
+# ------------------------------------------
+# AKAI MPKmini MKII Basic configuration file
+# ------------------------------------------
+
+# Configure on which MIDI channels to output MIDI events
+midi-channels:
+  # MIDI channel for drum pads
+  pads: 2
+  # MIDI channel for keyboard
+  keys: 2
+
+# Transpose configuration
+transponse:
+  # Octave shift. Supported values: OCT_M4 (4 octaves lower), OCT_M3, OCT_M2,
+  # OCT_M1, OCT_0 (neutral), OCT_P1, OCT_P2, OCT_P3, OCT_P4 (4 oct. higher)
+  octave: "OCT_0"
+  # Note shift. Supported values: TRANS_M12 (12 notes lower) to TRANS_M1,
+  # TRANS_0 (neutral), TRANS_P1 to TRANS_P12 (12 notes higher)
+  note: "TRANS_0"
+
+# Arpeggiator configuration
+arpeggiator:
+  # ON or OFF
+  enable: "OFF"
+  # Supported modes: UP, DOWN, EXCLUSIVE, INCLUSIVE, RANDOM, ORDER
+  mode: "EXCLUSIVE"
+  # Supported divisions: DIV_1_4, DIV_1_4T, DIV_1_8, DIV_1_8T, DIV_1_16,
+  # DIV_1_16T, DIV_1_32, DIV_1_32T
+  division: "DIV_1_8"
+  # EXTERNAL or INTERNAL
+  clock: "INTERNAL"
+  # ENABLE or DISABLE
+  latch: "DISABLE"
+  # Supported swings: SWING_50, SWING_55, SWING_57, SWING_59, SWING_61, SWING_64
+  swing: "SWING_50"
+  # Required button taps to determine the tempo of the Arpeggiator.
+  # Disabled when EXTERNAL clock is used.
+  taps: 3
+  # Arpeggio tempo. Disabled when EXTERNAL clock is used.
+  tempo: 140
+  # Arpeggio span: OCT_1 (one octave), OCT_2, OCT_3, OCT_4
+  octaves: "OCT_1"
+
+# Joystick configuration
+joystick:
+  # X-Axis MIDI note
+  axis-x: "CC2"
+  # Y-Axis MIDI note
+  axis-y: "PBEND"
+  # X-Axis MIDI note bend (upwards)
+  x-up: 1
+  # X-Axis MIDI note bend (downwards)
+  x-down: 1
+  # Y-Axis MIDI note bend (upwards)
+  y-up: 1
+  # Y-Axis MIDI note bend (downwards)
+  y-down: 1
+
+# Controller dials configuration
+dials:
+  # Minimum MIDI value
+  min-value: 0
+  # Maximum MIDI value
+  max-value: 127
+  # CC-MIDI note sent
+  cc: "4 5 6 7 8 9 10 11"
+
+# Drum pads configuration. Bank can be toggle via Bank A/B button.
+pads:
+  bank-a:
+    # Regular MIDI notes sent
+    notes: "C#2 D1 G1 A1 C1 A0 F#1 A#1"
+    # CC-MIDI notes sent
+    cc: "20 21 22 23 24 25 26 27"
+    # PROG-MIDI notes sent
+    prog: "1 2 3 4 5 6 7 8"
+    # Trigger type: M for MOMENTARY, T for TOGGLE
+    trigger: "M M M M M M M M"
+  bank-b:
+    # Regular MIDI notes sent
+    notes: "F#2 D1 G1 A1 C1 C#1 D#2 G#1"
+    # CC-MIDI notes sent
+    cc: "20 21 22 23 24 25 26 27"
+    # PROG-MIDI notes sent
+    prog: "9 10 11 12 13 14 15 16"
+    # Trigger type: M for MOMENTARY, T for TOGGLE
+    trigger: "M M M M M M M M"
