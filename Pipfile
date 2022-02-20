@@ -20,9 +20,11 @@ rope = "*" # Refactoring library
 twine = "*" # Interoperability with pypi.org
 mypy = "*" # Optional static type checker
 typing_extensions = "*" # Typing extensions for mypy
+types-PyYAML = "*" # Typing extensions for pyyaml
 akai_mpkmini_mkii_ctrl = {path = ".", editable = true}
 
 [packages]
 python-rtmidi = "*"
 click = "*"
 construct = "<2.10"
+pyyaml = "*"

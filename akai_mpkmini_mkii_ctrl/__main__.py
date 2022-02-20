@@ -4,10 +4,11 @@ r"""Command-line controller for AKAI MPKmini MK2."""
 
 import collections.abc
 import logging
-from json import dumps, load
+from json import dumps
 from typing import List
 
 import click
+from config_reader import load_config_from_file, update_config
 
 from akai_mpkmini_mkii_ctrl import controller as ctrl
 from akai_mpkmini_mkii_ctrl import json_converter
@@ -86,22 +87,25 @@ def push_preset(
     '--check', '-c', is_flag=True, help='Check resulting JSON before pushing'
 )
 @click.pass_context
-def push_json_preset(
+def push_config_preset(
     ctx: click.Context,
     input_file: List[str],
     check: bool
 ) -> None:
     # Combine all provided JSON files
-    json_data: dict = {}
-    for in_file in input_file:
-        with open(in_file, 'r') as in_file_handle:
-            json_preset = load(in_file_handle)
-        __update(json_data, json_preset)
+    config_data: dict = {}
+    try:
+        for in_file in input_file:
+            config_data_in_file = load_config_from_file(in_file)
+            config_data = update_config(config_data, config_data_in_file)
+    except ValueError as ve:
+        logging.error(ve)
+        exit(1)
     if check:
-        logging.info(dumps(json_data, indent=4))
+        logging.info(dumps(config_data, indent=4))
         input('Press key to continue...')
     # Convert to binary structure
-    binary = json_converter.json_to_binary(json_data)
+    binary = json_converter.json_to_binary(config_data)
     config = MPK_MINI_MK2.parse(binary)
     with ctrl.midi_connection(ctx.obj['midi_port']) as (m_in, m_out):
         ctrl.send_config_to_device(config, ctx.obj['preset'], m_out)
