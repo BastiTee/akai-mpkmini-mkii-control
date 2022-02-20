@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0
+
+- Introduce support for YAML configuration files
+
 ## 0.1.3
 
 - Fix misleading documentation on MIDI channel option
