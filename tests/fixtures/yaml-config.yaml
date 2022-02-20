@@ -1,0 +1,43 @@
+midi-channels:
+  pads: 2
+  keys: 2
+
+transponse:
+  octave: "OCT_0"
+  note: "TRANS_0"
+
+arpeggiator:
+  enable: "OFF"
+  mode: "EXCLUSIVE"
+  division: "DIV_1_8"
+  clock: "INTERNAL"
+  latch: "DISABLE"
+  swing: "SWING_50"
+  taps: 3
+  tempo: 140
+  octaves: "OCT_1"
+
+joystick:
+  axis-x: "CC2"
+  axis-y: "PBEND"
+  x-up: 1
+  x-down: 1
+  axis_y: "PBEND"
+  y-up: 0
+  y-down: 1
+
+dials:
+  min-value: 0
+  max-value: 127
+  cc: "4 5 6 7 8 9 10 11"
+
+pads:
+  bank-a:
+    cc: "20 21 22 23 24 25 26 27"
+    prog: "1 2 3 4 5 6 7 8"
+    trigger: "M M M M M M M M"
+
+  bank-b:
+    cc: "20 21 22 23 24 25 26 27"
+    prog: "9 10 11 12 13 14 15 16"
+    trigger: "M M M M M M M M"
