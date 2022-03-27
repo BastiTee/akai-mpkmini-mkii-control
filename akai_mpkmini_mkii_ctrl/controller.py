@@ -8,6 +8,7 @@ from time import sleep
 from typing import Generator, List, Tuple
 
 import rtmidi
+from construct.core import ConstError
 from rtmidi import MidiIn, MidiOut, RtMidiError, midiutil
 
 from akai_mpkmini_mkii_ctrl.mpkmini_mk2 import MPK_MINI_MK2
@@ -58,8 +59,11 @@ def send_binary_to_device(
 ) -> None:
     with open(file_path, 'rb') as in_file_byte:
         data = in_file_byte.read(2000)
-    config = MPK_MINI_MK2.parse(data)
-    send_config_to_device(config, preset, midi_out)
+    try:
+        config = MPK_MINI_MK2.parse(data)
+        send_config_to_device(config, preset, midi_out)
+    except ConstError:
+        logging.error(f'Input file {file_path} is not a valid binary format.')
 
 
 def send_config_to_device(
