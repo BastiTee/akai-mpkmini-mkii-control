@@ -1,9 +1,10 @@
 # Required executables
-ifeq (, $(shell which python3))
- $(error "No python3 on PATH.")
+ifeq (, $(shell which python))
+ $(error "No python on PATH.")
 endif
-ifeq (, $(shell which pipenv))
- $(error "No pipenv on PATH.")
+PIPENV_COM := python -m pipenv
+ifeq (, $(shell $(PIPENV_COM)))
+ $(error "Pipenv not available in Python installation.")
 endif
 
 # Suppress warning if pipenv is started inside .venv
@@ -18,7 +19,7 @@ export LANG = C.UTF-8
 # Set configuration folder to venv
 export PYPE_CONFIG_FOLDER = $(shell pwd)/.venv/.pype-cli
 # Process variables
-VERSION = $(shell python3 setup.py --version)
+VERSION = $(shell python setup.py --version)
 PY_FILES := setup.py akai_mpkmini_mkii_ctrl tests
 LAST_VERSION := $(shell git tag | sort --version-sort -r | head -n1)
 VERSION_HASH := $(shell git show-ref -s $(LAST_VERSION))
@@ -27,7 +28,7 @@ all: clean venv build
 
 venv: clean
 	@echo Initialize virtualenv, i.e., install required packages etc.
-	pipenv --three install --dev
+	$(PIPENV_COM) install --dev
 
 shell:
 	@echo Initialize virtualenv and open a new shell using it
@@ -92,7 +93,6 @@ run:
 
 publish: all
 	@echo Publish pype to pypi.org
-	TWINE_USERNAME=$(TWINE_USERNAME) TWINE_PASSWORD=$(TWINE_PASSWORD) \
 	pipenv run twine upload dist/*
 
 release:

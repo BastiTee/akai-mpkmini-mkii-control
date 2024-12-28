@@ -22,7 +22,7 @@ Please note that the dependency `python-rtmidi` requires compilation resources t
 
 To install from source you can use:
 
-- `python3 setup.py install`, or
+- `python setup.py install`, or
 - `make install` which will run a `pipenv` including linting, tests, etc.
 
 ## Usage
@@ -41,14 +41,14 @@ To install from source you can use:
 `print-preset`: Print preset on device in human readable format. In this example it will print the preset stored in slot 1 on the device.
 
 ```shell
-python3 -m akai_mpkmini_mkii_ctrl \
+python -m akai_mpkmini_mkii_ctrl \
 --preset 1 print-preset
 ```
 
 `pull-preset`: Pull a binary from the device and write to file.
 
 ```shell
-python3 -m akai_mpkmini_mkii_ctrl \
+python -m akai_mpkmini_mkii_ctrl \
 --preset 0 \
 pull-preset \
 --output-file ram-preset.mk2
@@ -57,7 +57,7 @@ pull-preset \
 `push-preset`: Push a local binary preset to the device. This also works with [factory binary presets](resources/factory-patches).
 
 ```shell
-python3 -m akai_mpkmini_mkii_ctrl \
+python -m akai_mpkmini_mkii_ctrl \
 --preset 2 \
 push-preset \
 --input-file resources/factory-patches/preset1.mk2
@@ -66,7 +66,7 @@ push-preset \
 `push-config-preset`: Push a local configuration preset ([Example](resources/config-presets/Base-Config.yaml)) to the device. Notice that you are able to combine several input files for easier re-use. YAML and JSON format is supported. The configurations are applied in order, e.g., in this case [`Base-Config.yaml`](resources/config-presets/Base-Config.yaml) will be extended/overwritten with the properties found in [`Logic-RetroSynth+Juno.yaml`](resources/config-presets/Logic-RetroSynth+Juno.yaml).
 
 ```shell
-python3 -m akai_mpkmini_mkii_ctrl \
+python -m akai_mpkmini_mkii_ctrl \
 --preset 0 \
 push-config-preset \
 --input-file resources/config-presets/Base-Config.yaml \
