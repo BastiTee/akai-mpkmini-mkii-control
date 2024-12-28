@@ -1,23 +1,33 @@
 name: CI
-
 on:
     push:
         branches:
-            - master
+            - main
             - feature/*
 
 jobs:
     build:
         runs-on: ubuntu-latest
-
+        strategy:
+            matrix:
+                # https://www.python.org/downloads/
+                python-version: [
+                        "3.9", # EOL: 2025-10
+                        "3.10", # EOL: 2026-10
+                        "3.11", # EOL: 2027-10
+                        "3.12", # EOL: 2028-10
+                        "3.13", # EOL: 2029-10
+                    ]
+        name: ${{ matrix.python-version }}
         steps:
             - uses: actions/checkout@v2
-            - uses: actions/setup-python@v1
 
-            - name: Install dependencies
-              run: sudo apt-get install libasound2-dev
+            - name: Setup python
+              uses: actions/setup-python@v3
+              with:
+                  python-version: "${{ matrix.python-version }}"
 
             - name: CI checks
               run: |
-                  python3 -m pip install pipenv
-                  make install
+                  python -m pip install pipenv
+                  make
