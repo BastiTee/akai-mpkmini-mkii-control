@@ -6,16 +6,16 @@
 
 [![CI](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml/badge.svg)](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml) ![PyPU - Version](https://img.shields.io/pypi/v/akai-mpkmini-mkii-ctrl.svg) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/akai-mpkmini-mkii-ctrl.svg)
 
-Best effort project to overcome the fact that AKAI doesn't seem to be interested in fixing Segmentation faults in their [MPKmini Editor](https://www.akaipro.com/mpk-mini-mkii).
+Best effort project to overcome the fact that AKAI doesn't seem to be interested in fixing Segmentation faults in their [MPKmini Editor](https://www.akaipro.com/mpk-mini-mkii). It currently fixes my own itches but I gladly accept feedback!
 
-It currently fixes my own itches but I gladly accept feedback!
+**Note:** At this point, I don't own an AKAI MPKmini anymore. This tool was tested for Python 3.9-3.11, which were still supported as of writing. In higher versions, the supported / pinned version of construct [becomes a problem](https://github.com/BastiTee/akai-mpkmini-mkii-control/issues/4), that must be fixed first.
 
 ## Install
 
 To install via [PyPi](https://pypi.org/project/akai-mpkmini-mkii-ctrl/):
 
 ```
-pip3 install --user akai-mpkmini-mkii-ctrl
+pip install --user akai-mpkmini-mkii-ctrl
 ```
 
 Please note that the dependency `python-rtmidi` requires compilation resources to be present on your system. For Debian-like systems for example you need to install `sudo apt-get install libasound2-dev`. Refer to the [project documentation](https://spotlightkid.github.io/python-rtmidi/installation.html) for details.
