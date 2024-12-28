@@ -6,23 +6,23 @@
 
 [![CI](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml/badge.svg)](https://github.com/BastiTee/akai-mpkmini-mkii-control/actions/workflows/main.yml) ![PyPU - Version](https://img.shields.io/pypi/v/akai-mpkmini-mkii-ctrl.svg) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/akai-mpkmini-mkii-ctrl.svg)
 
-Best effort project to overcome the fact that AKAI doesn't seem to be interested in fixing Segmentation faults in their [MPKmini Editor](https://www.akaipro.com/mpk-mini-mkii).
+Best effort project to overcome the fact that AKAI doesn't seem to be interested in fixing Segmentation faults in their [MPKmini Editor](https://www.akaipro.com/mpk-mini-mkii). It currently fixes my own itches but I gladly accept feedback!
 
-It currently fixes my own itches but I gladly accept feedback!
+**Note:** At this point, I don't own an AKAI MPKmini anymore. This tool was tested for Python 3.9-3.11, which were still supported as of writing. In higher versions, the supported / pinned version of construct [becomes a problem](https://github.com/BastiTee/akai-mpkmini-mkii-control/issues/4), that must be fixed first.
 
 ## Install
 
 To install via [PyPi](https://pypi.org/project/akai-mpkmini-mkii-ctrl/):
 
 ```
-pip3 install --user akai-mpkmini-mkii-ctrl
+pip install --user akai-mpkmini-mkii-ctrl
 ```
 
 Please note that the dependency `python-rtmidi` requires compilation resources to be present on your system. For Debian-like systems for example you need to install `sudo apt-get install libasound2-dev`. Refer to the [project documentation](https://spotlightkid.github.io/python-rtmidi/installation.html) for details.
 
 To install from source you can use:
 
-- `python3 setup.py install`, or
+- `python setup.py install`, or
 - `make install` which will run a `pipenv` including linting, tests, etc.
 
 ## Usage
@@ -41,14 +41,14 @@ To install from source you can use:
 `print-preset`: Print preset on device in human readable format. In this example it will print the preset stored in slot 1 on the device.
 
 ```shell
-python3 -m akai_mpkmini_mkii_ctrl \
+python -m akai_mpkmini_mkii_ctrl \
 --preset 1 print-preset
 ```
 
 `pull-preset`: Pull a binary from the device and write to file.
 
 ```shell
-python3 -m akai_mpkmini_mkii_ctrl \
+python -m akai_mpkmini_mkii_ctrl \
 --preset 0 \
 pull-preset \
 --output-file ram-preset.mk2
@@ -57,7 +57,7 @@ pull-preset \
 `push-preset`: Push a local binary preset to the device. This also works with [factory binary presets](resources/factory-patches).
 
 ```shell
-python3 -m akai_mpkmini_mkii_ctrl \
+python -m akai_mpkmini_mkii_ctrl \
 --preset 2 \
 push-preset \
 --input-file resources/factory-patches/preset1.mk2
@@ -66,7 +66,7 @@ push-preset \
 `push-config-preset`: Push a local configuration preset ([Example](resources/config-presets/Base-Config.yaml)) to the device. Notice that you are able to combine several input files for easier re-use. YAML and JSON format is supported. The configurations are applied in order, e.g., in this case [`Base-Config.yaml`](resources/config-presets/Base-Config.yaml) will be extended/overwritten with the properties found in [`Logic-RetroSynth+Juno.yaml`](resources/config-presets/Logic-RetroSynth+Juno.yaml).
 
 ```shell
-python3 -m akai_mpkmini_mkii_ctrl \
+python -m akai_mpkmini_mkii_ctrl \
 --preset 0 \
 push-config-preset \
 --input-file resources/config-presets/Base-Config.yaml \

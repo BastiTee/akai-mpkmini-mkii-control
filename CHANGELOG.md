@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0
+
+- Upgrade build workflows
+- Extend CI pipeline to use matrix builds for supported Python versions
+- Remove python3 references
+
 ## 0.2.0
 
 - Introduce support for YAML configuration files
